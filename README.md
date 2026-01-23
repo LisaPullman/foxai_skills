@@ -27,6 +27,7 @@
 *   **[theme-factory](./skills/theme-factory)**: 主题工厂。提供预设或自定义的主题（配色、字体），可一键应用到文档、幻灯片或网页中。
 *   **[brand-guidelines](./skills/brand-guidelines)**: 品牌指南库。定义了 Anthropic 的官方品牌色彩、排版和视觉规范。
 *   **[applying-brand-guidelines](./skills/applying-brand-guidelines)**: 品牌一致性应用。确保生成的所有文档和设计符合公司的品牌视觉规范。
+*   **[ui-ux-pro-max](./.trae/skills/ui-ux-pro-max)**: UI/UX 设计专家。拥有可搜索的设计数据库，提供针对 SaaS、电商等多种场景的完整设计系统生成、配色方案、字体搭配及 UX 规范指引。支持 React, Flutter 等 13 种技术栈。
 
 ### 💻 开发与技术 (Development & Technical)
 这些技能辅助开发者进行代码生成、测试和工具构建。
