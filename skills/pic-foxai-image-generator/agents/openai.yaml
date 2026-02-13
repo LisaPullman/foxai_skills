@@ -1,0 +1,4 @@
+interface:
+  display_name: "FoxAI PIC 文生图自动化"
+  short_description: "Automate pic.foxai.edu.kg T2I: login, set model/size/count"
+  default_prompt: "Use $pic-foxai-image-generator to generate images on pic.foxai.edu.kg from my prompt, model, resolution, and count."
