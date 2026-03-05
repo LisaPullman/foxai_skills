@@ -7,8 +7,8 @@
 | 分类 | 数量 | 说明 |
 |------|------|------|
 | **自建 Skills** | 4 | foxai_skills 仓库 |
-| **系统 Skills** | 53 | OpenClaw 内置 |
-| **总计** | **57** | 全部 Skills |
+| **系统 Skills** | 52 | OpenClaw 内置 |
+| **总计** | **56** | 全部 Skills |
 
 ---
 
@@ -37,7 +37,7 @@
 
 ---
 
-## ⚙️ 系统 Skills (53)
+## ⚙️ 系统 Skills (52)
 
 OpenClaw 内置技能
 
@@ -91,9 +91,9 @@ OpenClaw 内置技能
 |-------|------|
 | weather | 天气查询 |
 
-### 🔧 工具 (33)
+### 🔧 工具 (32)
 
-其他工具技能：apple-reminders, bear-notes, blogwatcher, blucli, bluebubbles, camsnap, canvas, clawhub, eightctl, food-order, gemini, gifgrep, gog, goplaces, himalaya, imsg, mcporter, model-usage, nano-banana-pro, nano-pdf, openai-image-gen, openai-whisper, openai-whisper-api, openhue, oracle, ordercli, peekaboo, session-logs, slack, summarize, things-mac, tmux, trello, voice-call, wacli, xurl
+其他工具技能：apple-reminders, blogwatcher, blucli, bluebubbles, camsnap, canvas, clawhub, eightctl, gemini, gifgrep, gog, goplaces, himalaya, imsg, mcporter, model-usage, nano-banana-pro, nano-pdf, openai-image-gen, openai-whisper, openai-whisper-api, openhue, oracle, ordercli, peekaboo, session-logs, summarize, things-mac, tmux, trello, voice-call, wacli, xurl
 
 ---
 
