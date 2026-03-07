@@ -6,7 +6,7 @@
 
 | 分类 | 数量 | 说明 |
 |------|------|------|
-| **自建 Skills** | 4 | foxai_skills 仓库 |
+| **自建 Skills** | 5 | foxai_skills 仓库 |
 | **系统 Skills** | 52 | OpenClaw 内置 |
 | **总计** | **56** | 全部 Skills |
 
@@ -29,11 +29,12 @@
 | tutor | 数学讲解视频（Manim + Edge TTS） |
 | remotion | React 视频生成 |
 
-### 📺 设备控制 (1)
+### 📺 设备控制 (2)
 
 | Skill | 功能 |
 |-------|------|
 | dlna | DLNA/UPnP 投屏控制 |
+| multi-search-engine | 多引擎搜索 (17个搜索引擎) |
 
 ---
 
