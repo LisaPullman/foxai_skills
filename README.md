@@ -8,11 +8,11 @@
 |------|------|------|
 | **自建 Skills** | 6 | foxai_skills 仓库 |
 | **系统 Skills** | 52 | OpenClaw 内置 |
-| **总计** | **56** | 全部 Skills |
+| **总计** | **58** | 全部 Skills |
 
 ---
 
-## 📦 自建 Skills (4)
+## 📦 自建 Skills (6)
 
 来自 [foxai_skills](https://github.com/LisaPullman/foxai_skills) 仓库
 
