@@ -6,13 +6,13 @@
 
 | 分类 | 数量 | 说明 |
 |------|------|------|
-| **自建 Skills** | 4 | foxai_skills 仓库 |
-| **系统 Skills** | 53 | OpenClaw 内置 |
-| **总计** | **57** | 全部 Skills |
+| **自建 Skills** | 8 | foxai_skills 仓库 |
+| **系统 Skills** | 52 | OpenClaw 内置 |
+| **总计** | **60** | 全部 Skills |
 
 ---
 
-## 📦 自建 Skills (4)
+## 📦 自建 Skills (8)
 
 来自 [foxai_skills](https://github.com/LisaPullman/foxai_skills) 仓库
 
@@ -29,15 +29,29 @@
 | tutor | 数学讲解视频（Manim + Edge TTS） |
 | remotion | React 视频生成 |
 
+### 🔍 搜索 (2)
+
+| Skill | 功能 |
+|-------|------|
+| multi-search-engine | 多引擎搜索 (17个搜索引擎) |
+| web-search-plus | 智能多引擎搜索 (Serper/Tavily/Exa/Perplexity/You.com/SearXNG) |
+
 ### 📺 设备控制 (1)
 
 | Skill | 功能 |
 |-------|------|
 | dlna | DLNA/UPnP 投屏控制 |
 
+### 💻 开发 (2)
+
+| Skill | 功能 |
+|-------|------|
+| coding-loop | 循环编程开发 |
+| agent-browser | AI 浏览器自动化 |
+
 ---
 
-## ⚙️ 系统 Skills (53)
+## ⚙️ 系统 Skills (52)
 
 OpenClaw 内置技能
 
@@ -93,7 +107,7 @@ OpenClaw 内置技能
 
 ### 🔧 工具 (33)
 
-其他工具技能：apple-reminders, bear-notes, blogwatcher, blucli, bluebubbles, camsnap, canvas, clawhub, eightctl, food-order, gemini, gifgrep, gog, goplaces, himalaya, imsg, mcporter, model-usage, nano-banana-pro, nano-pdf, openai-image-gen, openai-whisper, openai-whisper-api, openhue, oracle, ordercli, peekaboo, session-logs, slack, summarize, things-mac, tmux, trello, voice-call, wacli, xurl
+其他工具技能：apple-reminders, blogwatcher, blucli, bluebubbles, camsnap, canvas, clawhub, eightctl, gemini, gifgrep, gog, goplaces, himalaya, imsg, mcporter, model-usage, nano-banana-pro, nano-pdf, openai-image-gen, openai-whisper, openai-whisper-api, openhue, oracle, ordercli, peekaboo, session-logs, summarize, things-mac, tmux, trello, voice-call, wacli, xurl
 
 ---
 
@@ -114,6 +128,18 @@ cp -r foxai_skills/* ~/.openclaw/skills/
 ```bash
 # 生成图片
 foxai_generator.cjs "cute cat" --count 1
+
+# 多引擎搜索
+multi-search-engine "AI news"
+
+# 智能搜索
+web-search-plus "最新科技动态"
+
+# 浏览器自动化
+agent-browser open example.com && agent-browser snapshot
+
+# 循环编程
+coding-loop "实现用户认证系统"
 
 # 查询天气
 weather 苏州
