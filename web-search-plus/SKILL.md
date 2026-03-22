@@ -1,3 +1,10 @@
+---
+name: web-search-plus
+description: 智能多引擎搜索技能，聚合 Serper/Tavily/Exa/Perplexity/You.com/SearXNG 等多个搜索引擎结果
+metadata:
+  tags: search, multi-engine, aggregation
+---
+
 # web-search-plus
 
 智能多引擎搜索技能，聚合多个搜索引擎结果。
