@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<style>
+  :root {
+    --ivory:  #FAF9F5;
+    --paper:  #FFFFFF;
+    --slate:  #141413;
+    --clay:   #D97757;
+    --clay-d: #B85C3E;
+    --oat:    #E3DACC;
+    --olive:  #788C5D;
+    --g100:   #F0EEE6;
+    --g200:   #E6E3DA;
+    --g300:   #D1CFC5;
+    --g500:   #87867F;
+    --g700:   #3D3D3A;
+    --serif: ui-serif, "Songti SC", "Noto Serif SC", Georgia, "Times New Roman", Times, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ivory);
+    color: var(--slate);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: rgba(217, 119, 87, 0.22);
+    color: var(--slate);
+  }
+
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ── page header ── */
+  header.page-head {
+    padding: 56px 0 8px;
+    position: relative;
+  }
+  .source-note {
+    padding: 28px 0 0;
+    font-size: 13px;
+    color: var(--g500);
+    line-height: 1.6;
+    max-width: 640px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--g500);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1.5px;
+    background: var(--clay);
+    flex: none;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    margin: 0 0 12px;
+    color: var(--slate);
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--clay);
+  }
+  .lede {
+    font-size: 16.5px;
+    color: var(--g700);
+    max-width: 640px;
+    margin: 0 0 16px;
+    line-height: 1.55;
+  }
+  .meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--g500);
+    letter-spacing: 0.04em;
+    margin: 0 0 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    align-items: center;
+  }
+  .meta .sep { color: var(--g300); }
+
+  /* ── toc pills ── */
+  nav.toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 28px;
+  }
+  nav.toc a {
+    font-size: 12.5px;
+    padding: 7px 14px;
+    border: 1.5px solid var(--g300);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--g700);
+    background: var(--paper);
+    transition: border-color 120ms, color 120ms, background 120ms;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  nav.toc a .n {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--g500);
+  }
+  nav.toc a:hover {
+    border-color: var(--slate);
+    color: var(--slate);
+    text-decoration: none;
+  }
+  nav.toc a:hover .n { color: var(--clay); }
+
+  /* ── content shell ── */
+  .content {
+    background: var(--paper);
+    border: 1.5px solid var(--g300);
+    border-radius: 14px;
+    padding: 34px 34px 40px;
+  }
+  .content > :first-child { margin-top: 0; }
+  .content > :last-child { margin-bottom: 0; }
+
+  /* optional artifact chrome */
+  .artifact {
+    background: var(--paper);
+    border: 1.5px solid var(--g300);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .artifact-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-bottom: 1.5px solid var(--g200);
+    background: var(--g100);
+  }
+  .artifact-bar .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--g300);
+    flex: none;
+  }
+  .artifact-bar .file {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--g500);
+    margin-left: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .artifact-body {
+    padding: 34px 34px 40px;
+  }
+  .artifact-body > :first-child { margin-top: 0; }
+  .artifact-body > :last-child { margin-bottom: 0; }
+
+  /* ── typography ── */
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 27px;
+    letter-spacing: -0.014em;
+    line-height: 1.15;
+    margin: 44px 0 14px;
+    color: var(--slate);
+    scroll-margin-top: 28px;
+  }
+  h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 32px 0 12px;
+    color: var(--slate);
+    scroll-margin-top: 28px;
+  }
+  h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    margin: 24px 0 10px;
+    color: var(--clay-d);
+    scroll-margin-top: 28px;
+  }
+  .content h2:first-child,
+  .artifact-body h2:first-child,
+  .section > h2:first-child { margin-top: 0; }
+
+  .sub {
+    font-size: 14px;
+    color: var(--g500);
+    margin: -6px 0 20px;
+    line-height: 1.5;
+  }
+
+  p {
+    margin: 0 0 16px;
+    font-size: 15.5px;
+    color: var(--g700);
+    line-height: 1.65;
+  }
+  p strong,
+  li strong { color: var(--slate); font-weight: 600; }
+
+  a {
+    color: var(--clay);
+    text-decoration-color: var(--oat);
+    text-underline-offset: 3px;
+  }
+  a:hover {
+    text-decoration-color: var(--clay);
+    color: var(--clay-d);
+  }
+
+  .highlight {
+    font-weight: 600;
+    color: var(--clay-d);
+  }
+  .emphasis {
+    font-weight: 600;
+    color: var(--slate);
+    background: linear-gradient(transparent 60%, rgba(217, 119, 87, 0.22) 60%);
+  }
+  .stat-number {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.25em;
+    color: var(--clay-d);
+    letter-spacing: -0.02em;
+  }
+
+  ul, ol {
+    margin: 12px 0 20px;
+    padding-left: 1.35em;
+    color: var(--g700);
+  }
+  li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  li::marker { color: var(--clay); }
+  li > ul, li > ol { margin: 8px 0 4px; }
+
+  hr {
+    border: none;
+    border-top: 1.5px solid var(--g200);
+    margin: 36px 0;
+  }
+
+  /* ── divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0 28px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--g500);
+    white-space: nowrap;
+  }
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1.5px;
+    background: var(--g300);
+  }
+
+  /* ── key point / bite ── */
+  .key-point,
+  .bite {
+    display: block;
+    background: var(--ivory);
+    border-left: 3px solid var(--clay);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 22px 0;
+    font-size: 14.5px;
+    color: var(--g700);
+    line-height: 1.55;
+  }
+  .key-point p,
+  .bite p { margin: 0 0 8px; }
+  .key-point p:last-child,
+  .bite p:last-child { margin-bottom: 0; }
+  .bite-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clay-d);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ── quote / blockquote ── */
+  .quote,
+  blockquote {
+    margin: 28px 0;
+    padding: 8px 0 8px 20px;
+    border-left: 3px solid var(--oat);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--slate);
+    max-width: 36em;
+  }
+  .quote p,
+  blockquote p {
+    margin: 0 0 10px;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+  }
+  .quote p:last-child,
+  blockquote p:last-child { margin-bottom: 0; }
+  .quote cite,
+  blockquote cite,
+  .quote footer,
+  blockquote footer {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: var(--g500);
+  }
+
+  /* ── cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 24px 0 32px;
+  }
+  .card {
+    background: var(--paper);
+    border: 1.5px solid var(--g300);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(20, 20, 19, 0.08);
+    border-color: var(--slate);
+  }
+  .card-title,
+  .card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+    color: var(--slate);
+    line-height: 1.25;
+  }
+  .card p {
+    font-size: 14px;
+    margin: 0 0 10px;
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .card ul,
+  .card ol {
+    margin: 8px 0 0;
+    padding-left: 1.2em;
+  }
+  .card li {
+    font-size: 13.5px;
+    margin-bottom: 6px;
+  }
+
+  /* ── vs grid ── */
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0 28px;
+  }
+  .vs-cell {
+    border: 1.5px solid var(--g300);
+    border-radius: 12px;
+    padding: 16px 18px;
+    background: var(--ivory);
+  }
+  .vs-cell.actual {
+    border-color: var(--clay);
+    background: #FBF3EF;
+  }
+  .vs-tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-bottom: 8px;
+  }
+  .vs-cell.actual .vs-tag { color: var(--clay-d); }
+  .vs-cell p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  /* ── stats ── */
+  .stat-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 26px;
+    padding: 14px 18px;
+    border: 1.5px solid var(--g200);
+    border-radius: 12px;
+    background: var(--g100);
+    margin: 20px 0 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--g700);
+  }
+  .stat-strip b { color: var(--slate); font-weight: 600; }
+  .stat-strip .warn b { color: var(--clay-d); }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0 28px;
+  }
+  .stat {
+    flex: 1 1 120px;
+    background: var(--ivory);
+    border: 1.5px solid var(--g200);
+    border-radius: 10px;
+    padding: 12px 16px 10px;
+  }
+  .stat .n {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--slate);
+  }
+  .stat.warn .n { color: var(--clay-d); }
+  .stat.ok .n { color: var(--olive); }
+  .stat .t {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--g500);
+    margin-top: 4px;
+  }
+
+  /* ── badges ── */
+  .badge {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    border: 1.5px solid var(--g300);
+    background: var(--g100);
+    color: var(--g700);
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .badge.warn {
+    color: var(--clay-d);
+    border-color: var(--clay);
+    background: #FBF0EA;
+  }
+  .badge.ok {
+    color: #55663F;
+    border-color: var(--olive);
+    background: #EFF2E9;
+  }
+  .badge.note {
+    color: #8A6A3B;
+    border-color: #C9B48E;
+    background: var(--oat);
+  }
+  .badge.muted {
+    color: var(--g700);
+    border-color: var(--g300);
+    background: var(--g100);
+  }
+
+  /* ── chips ── */
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 24px;
+  }
+  .chip {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--g300);
+    background: var(--paper);
+    color: var(--g700);
+  }
+
+  /* ── final card ── */
+  .final-card {
+    border: 1.5px solid var(--slate);
+    border-radius: 14px;
+    background: var(--paper);
+    padding: 24px 26px 26px;
+    margin: 36px 0 8px;
+    box-shadow: 0 10px 28px rgba(20, 20, 19, 0.07);
+  }
+  .final-card > :first-child { margin-top: 0; }
+  .final-card > :last-child { margin-bottom: 0; }
+  .final-card h2,
+  .final-card h3 {
+    margin-top: 0;
+  }
+
+  /* ── code ── */
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--g100);
+    border: 1px solid var(--g200);
+    border-radius: 5px;
+    padding: 1px 5px;
+    color: var(--g700);
+    word-break: break-word;
+  }
+  pre {
+    margin: 20px 0 28px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    border-radius: 10px;
+    background: var(--ivory);
+    border: 1.5px solid var(--g200);
+  }
+  pre code {
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--slate);
+  }
+
+  /* ── table ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 20px 0 28px;
+    border-radius: 10px;
+    border: 1.5px solid var(--g200);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 0;
+  }
+  th, td {
+    border: 1px solid var(--g200);
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--g100);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--g700);
+    font-weight: 600;
+  }
+  td {
+    color: var(--g700);
+    background: var(--paper);
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* ── definition list ── */
+  dl {
+    margin: 16px 0 24px;
+  }
+  dt {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--slate);
+    margin: 14px 0 4px;
+  }
+  dd {
+    margin: 0 0 0 0;
+    padding-left: 0;
+    font-size: 14.5px;
+    color: var(--g700);
+    line-height: 1.55;
+  }
+
+  /* ── figure ── */
+  figure {
+    margin: 28px 0;
+    text-align: center;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1.5px solid var(--g200);
+  }
+  figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--g500);
+    line-height: 1.5;
+  }
+
+  /* ── section / art eyebrow ── */
+  .section {
+    margin-bottom: 8px;
+  }
+  .art-eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--g500);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 16px;
+  }
+  .art-eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1.5px;
+    background: var(--clay);
+    flex: none;
+  }
+
+  /* ── footer ── */
+  footer {
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 1.5px solid var(--g200);
+    font-size: 13px;
+    color: var(--g500);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  footer .k {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--g700);
+    font-size: 15px;
+  }
+  footer a {
+    color: var(--clay);
+    text-decoration-color: var(--oat);
+    text-underline-offset: 3px;
+  }
+  footer a:hover { text-decoration-color: var(--clay); }
+
+  /* ── responsive ── */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px 72px; }
+    header.page-head { padding-top: 36px; }
+    .content,
+    .artifact-body { padding: 22px 16px 28px; }
+    .vs-grid { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .quote,
+    blockquote { font-size: 17px; }
+    h2 { font-size: 23px; }
+    h3 { font-size: 18px; }
+    .final-card { padding: 18px 16px 20px; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="source-note">{{ source_note_optional }}</p>
+
+  <header class="page-head">
+    <div class="eyebrow">{{ eyebrow_or_category }}</div>
+    <h1>{{ title }}</h1>
+    <p class="lede">{{ lede_or_subtitle }}</p>
+    <div class="meta">
+      <span>{{ author }}</span>
+      <span class="sep">·</span>
+      <span>{{ date }}</span>
+    </div>
+    <nav class="toc" aria-label="目录">
+      <a href="#section-1">{{ toc_item }} <span class="n">01</span></a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <blockquote class="quote">
+      {{ opening_quote }}
+      <cite>{{ quote_source }}</cite>
+    </blockquote>
+
+    <section class="section" id="section-1">
+      <h2>{{ section_heading }}</h2>
+      <p class="sub">{{ section_sub }}</p>
+      <p>{{ paragraph }}</p>
+
+      <div class="key-point">
+        <span class="bite-tag">要点</span>
+        <p>{{ key_point_text }}</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3 class="card-title">{{ card_title }}</h3>
+          <p>{{ card_body }}</p>
+        </div>
+      </div>
+
+      <div class="vs-grid">
+        <div class="vs-cell">
+          <div class="vs-tag">常见理解</div>
+          <p>{{ vs_left }}</p>
+        </div>
+        <div class="vs-cell actual">
+          <div class="vs-tag">实际情况</div>
+          <p>{{ vs_right }}</p>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <span><b>{{ n1 }}</b> {{ label1 }}</span>
+        <span class="warn"><b>{{ n2 }}</b> {{ label2 }}</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ th1 }}</th>
+              <th>{{ th2 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ td1 }}</td>
+              <td>{{ td2 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre><code>{{ code_sample }}</code></pre>
+
+      <figure>
+        <img src="{{ image_url }}" alt="{{ image_alt }}">
+        <figcaption>{{ image_caption }}</figcaption>
+      </figure>
+    </section>
+
+    <div class="divider">小结</div>
+
+    <div class="final-card">
+      <div class="art-eyebrow">结论</div>
+      <h2>{{ closing_heading }}</h2>
+      <p>{{ closing_paragraph }}</p>
+    </div>
+  </main>
+
+  <!--
+  可选：带窗口条的 artifact（替换 main.content）
+  <div class="artifact">
+    <div class="artifact-bar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="file">{{ artifact_filename }}</span>
+    </div>
+    <div class="artifact-body">...</div>
+  </div>
+  -->
+
+  <footer>
+    <span class="k">{{ footer_tagline }}</span>
+    <span>{{ footer_source }}</span>
+  </footer>
+
+</div>
+</body>
+</html>

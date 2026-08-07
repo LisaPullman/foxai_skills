@@ -1,0 +1,34 @@
+{
+  "api_key": "",
+  "model": "speech-2.8-hd",
+  "default_voice": "male-qn-jingying",
+  "default_output_format": "mp3",
+  "rpm_limit": 20,
+  "features": {
+    "prosody_tags": true,
+    "pronunciation_dict": true,
+    "voice_modify": true,
+    "emotion_control": true
+  },
+  "default_audio_setting": {
+    "audio_sample_rate": 32000,
+    "bitrate": 128000,
+    "format": "mp3",
+    "channel": 1
+  },
+  "available_prosody_tags": [
+    "(sighs)",
+    "(laughs)",
+    "(coughs)",
+    "(gasps)",
+    "(clears throat)",
+    "(sneezes)",
+    "(applause)"
+  ],
+  "emotion_control": {
+    "via_text_prompt": true,
+    "via_prosody_tags": true,
+    "via_voice_selection": true,
+    "recommended_approach": "通过语气词标记+音色选择+文本提示词综合控制情绪"
+  }
+}
