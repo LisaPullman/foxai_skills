@@ -6,13 +6,13 @@
 
 | 分类 | 数量 | 说明 |
 |------|------|------|
-| **自建 Skills** | 8 | foxai_skills 仓库 |
+| **自建 Skills** | 11 | foxai_skills 仓库 |
 | **系统 Skills** | 52 | OpenClaw 内置 |
-| **总计** | **60** | 全部 Skills |
+| **总计** | **63** | 全部 Skills |
 
 ---
 
-## 📦 自建 Skills (8)
+## 📦 自建 Skills (11)
 
 来自 [foxai_skills](https://github.com/LisaPullman/foxai_skills) 仓库
 
@@ -21,6 +21,19 @@
 | Skill | 功能 |
 |-------|------|
 | pic-foxai-image-generator | FoxAI 文生图 |
+
+### Kate 设计 (3)
+
+
+| Skill | ��� � � 功能 |
+|-------|------|
+| minimalist-interface-kate | ����� ��� ��� � ��� � � 极简主义界面设计 |
+| data-viz-art-kate | ����� ��� ��� � ��� � � 数据可视化艺术 |
+| typographic-composition-kate | ��� ��� ��� � � � � 排版构图艺术 |
+
+
+
+
 
 ### 🎬 AI 视频 (2)
 
