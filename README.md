@@ -7,8 +7,8 @@
 | 分类 | 数量 | 说明 |
 |------|------|------|
 | **自建 Skills** | 11 | foxai_skills 仓库 |
-| **系统 Skills** | 52 | OpenClaw 内置 |
-| **总计** | **63** | 全部 Skills |
+| **系统 Skills** | 33 | OpenClaw 内置 |
+| **总计** | **99** | 全部 Skills |
 
 ---
 
@@ -22,7 +22,7 @@
 |-------|------|
 | pic-foxai-image-generator | FoxAI 文生图 |
 
-### Kate 设计 (3)
+### Kate 设计 (6)
 
 
 | Skill | ��� � � 功能 |
